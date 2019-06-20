@@ -1,7 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import Todo from './components/Todo';
 
-export default class App extends Component {
+interface AppProps { }
+
+interface AppState { }
+export default class App extends Component<AppProps, AppState> {
+
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         return (

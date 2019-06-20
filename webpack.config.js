@@ -58,6 +58,5 @@ module.exports = {
     },
 
     target: 'web',
-    devtool: 'source-map',
-    watch: ENVIRONMENT === 'development' ? true : false
+    devtool: 'source-map'
 };
