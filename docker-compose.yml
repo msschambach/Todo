@@ -7,8 +7,24 @@ services:
       - NODE_ENV=${ENVIRONMENT}
       - ENVIRONMENT=${ENVIRONMENT}
       - PORT=3000
+      - DB_NAME=todo_app
+      - DB_USER=root
+      - DB_PASSWORD=#enterHere!
+      - DB_HOST=db
+      - DB_PORT=3306
     volumes:
       - ./:/usr/src/app
       - /usr/src/app/node_modules
     ports:
       - 4200:3000
+    depends_on:
+      - db
+  db:
+    image: mysql:5.6
+    environment:
+      - MYSQL_ROOT_PASSWORD=#enterHere!
+      - MYSQL_DATABASE=todo_app
+    expose:
+      - 3306
+    ports:
+      - 3306:3306

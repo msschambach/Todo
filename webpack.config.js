@@ -23,16 +23,15 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
-                use: {
-                    loader: 'babel-loader'
-                },
+                use: ['babel-loader', 'source-map-loader'],
+                enforce: "pre",
                 exclude: /node_modules/
             },
             {
                 test: /\.tsx?$/,
-                use: {
-                    loader: 'ts-loader'
-                }
+                use: ['ts-loader', 'source-map-loader'],
+                enforce: "pre",
+                exclude: /node_modules/
             },
             {
                 test: /\.scss$/,

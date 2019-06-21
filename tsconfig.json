@@ -1,6 +1,8 @@
 {
     "compilerOptions": {
         "jsx": "react",
+        "sourceMap": true,
+        "target": "ESNext",
         "esModuleInterop": true
     },
     "exclude": [
