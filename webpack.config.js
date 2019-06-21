@@ -28,14 +28,16 @@ module.exports = {
                 },
                 exclude: /node_modules/
             },
-
             {
                 test: /\.tsx?$/,
                 use: {
                     loader: 'ts-loader'
                 }
+            },
+            {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
             }
-
         ]
     },
 
@@ -58,5 +60,8 @@ module.exports = {
     },
 
     target: 'web',
-    devtool: 'source-map'
+    devtool: 'source-map',
+    watchOptions: {
+        ignored: ['node_modules']
+    }
 };

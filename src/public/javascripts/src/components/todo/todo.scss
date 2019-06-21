@@ -1,0 +1,32 @@
+.todo {
+    padding: 10px;
+
+    input {
+        padding: 5px;
+        width: 300px;
+    }
+
+    .item-text {
+        display: inline-block;
+        margin-right: 16px;
+
+        &.done {
+            text-decoration: line-through;
+        }
+    }
+
+    .item {
+        input[type='checkbox'] {
+            width: 15px;
+        }
+    }
+
+
+    ul {
+        li {
+            list-style: none;
+            padding: 10px 5px;
+            border-bottom: 1px solid black;
+        }
+    }
+}

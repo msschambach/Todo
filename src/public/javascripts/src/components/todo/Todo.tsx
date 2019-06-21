@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+//import update from 'immutability-helper';
+import './todo.scss';
 
 export interface TodoItem {
     text: String
+    done: Boolean
+    created: Date
 }
 
 export interface TodoProps { }
@@ -13,7 +17,7 @@ export interface TodoState {
 export default class Todo extends Component<TodoProps, TodoState> {
 
     state: TodoState = {
-        todoList: []
+        todoList: [],
     }
 
     constructor(props) {
@@ -31,7 +35,9 @@ export default class Todo extends Component<TodoProps, TodoState> {
             todoList: [
                 ...currentTodoList,
                 {
-                    text: newItemText
+                    text: newItemText,
+                    done: false,
+                    created: new Date()
                 }
             ]
         });
@@ -52,6 +58,18 @@ export default class Todo extends Component<TodoProps, TodoState> {
         });
     }
 
+    toggleDoneState = (event) => {
+        const NewTodoList = this.state.todoList;
+        const ItemIndex = NewTodoList.findIndex((item) => {
+            return item.text === event.target.value
+        });
+
+        NewTodoList[ItemIndex].done = !NewTodoList[ItemIndex].done
+        this.setState({
+            todoList: NewTodoList
+        });
+    }
+
     render() {
         return (
             <div className='todo'>
@@ -60,16 +78,17 @@ export default class Todo extends Component<TodoProps, TodoState> {
                     <input type="text" name="todo_item" placeholder="Add todo item..." autoComplete='off' />
                 </form>
 
-                <div className="items">
+                <ul className="items">
                     {this.state.todoList.map((item, index) => {
                         return (
-                            <div key={index}>
-                                <p>{item.text}</p>
+                            <li className="item" key={index}>
+                                <input onChange={this.toggleDoneState} type="checkbox" value={`${item.text}`} />
+                                <span className={`item-text ${item.done ? 'done' : ''}`}>{item.text}</span>
                                 <button data-value={item.text} onClick={this.removeItem}>Remove</button>
-                            </div>
+                            </li>
                         );
                     })}
-                </div>
+                </ul>
             </div>
         );
     }

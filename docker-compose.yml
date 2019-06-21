@@ -4,20 +4,11 @@ services:
     build:
       context: .
     environment:
+      - NODE_ENV=${ENVIRONMENT}
       - ENVIRONMENT=${ENVIRONMENT}
       - PORT=3000
     volumes:
       - ./:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
       - 4200:3000
-    depends_on:
-      - webpack_worker
-
-  webpack_worker:
-    image: node:10.16.0
-    environment:
-      - ENVIRONMENT=${ENVIRONMENT}
-    volumes:
-      - ./:/usr/src/app
-    working_dir: /usr/src/app
-    command: sh -c "npm install && npx webpack --watch"
